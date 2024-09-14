@@ -1,0 +1,52 @@
+service_name: event-tracking-dev
+signal_shutdown: 0
+http_timeout: 10
+postgres:
+  username: postgres
+  password: MQ==
+  database: integration
+  host: localhost
+  db_schema: "sbh"
+  port: 5433
+
+  migrate: true
+  max_open_conn: -1
+  max_idle_conn: -1
+  max_life_time: -1
+  max_idle_time: -1
+  is_debug: false
+
+http:
+  port: 10016
+rpc:
+  port: 10015
+
+redis_setting:
+  addrs:
+  - redis-cluster:6379
+  database: 0
+  password: ""
+  # check_notification_duplicate: false
+redisearch_setting:
+  use_redisearch: true
+  addrs:
+    - redis-cluster:6380
+logger:
+  mode: development
+  level: debug
+kafka:
+  reader:
+    enable: true
+    topic: "event-tracking"
+    group_id: "event-tracking-group"
+    async: false
+    broker_address:
+      - "localhost:9092"
+    worker_pool: 1
+    sleep_time: 0 # second
+  writer:
+    topic: "event"
+    batch_size: 100
+    async: false
+    broker_address:
+      - "localhost:9092"
