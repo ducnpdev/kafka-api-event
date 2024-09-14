@@ -22,6 +22,6 @@ Thay đổi các biến môi trường của database và Kafka trong file dev.y
 Run 
 
 ```bash
-go run cmd/main.go
+go run cmd/server/main.go
 ```
 
